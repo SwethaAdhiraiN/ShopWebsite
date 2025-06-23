@@ -63,102 +63,129 @@ function LoginPage() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: "calc(100vh - 120px)", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <form
         onSubmit={handleSubmit}
         style={{
-          maxWidth: 380,
-          margin: '110px auto 0 auto',
-          background: 'rgba(10,20,40,0.82)',
-          borderRadius: 12,
-          padding: '32px 32px 24px 32px',
-          boxShadow: '0 4px 32px rgba(0,255,255,0.09)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 18,
+          maxWidth: 420,
+          width: "100%",
+          margin: "90px auto 60px auto",
+          background: "var(--surface-color)",
+          borderRadius: 16,
+          padding: "38px 34px 28px 34px",
+          boxShadow: "0 5px 32px 0 #d4af3738,0 2px 16px 0 #8b5cf608",
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
+          border: "1.8px solid var(--border-color)",
         }}
         autoComplete="off"
       >
-        <div style={{ textAlign: 'center', marginBottom: 8 }}>
-          <div className="subtitle" style={{ marginBottom: 5, fontWeight: 700, fontSize: '1.5rem', color: 'var(--base-light)' }}>Login</div>
+        <div style={{ textAlign: "center", marginBottom: 5 }}>
+          <div className="subtitle"
+            style={{
+              marginBottom: 4,
+              fontWeight: 800,
+              fontSize: "2rem",
+              color: "var(--secondary-color)",
+              letterSpacing: 0.5
+            }}>
+            Welcome Back
+          </div>
           <div className="description" style={{ margin: 0 }}>
             Sign in to your ShopWebsite account
           </div>
         </div>
-        <label htmlFor="username" style={{ fontWeight: 500 }}>Username</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          autoComplete="username"
-          value={form.username}
-          onChange={handleChange}
-          disabled={submitting}
-          style={{
-            padding: '10px 12px',
-            border: '1px solid var(--border-color)',
-            borderRadius: 4,
-            fontSize: '1rem',
-            background: '#18213c',
-            color: 'var(--text-color)',
-            outline: errors.username ? '2px solid #e6204c' : 'none',
-          }}
-        />
-        {errors.username && (
-          <div style={{ color: '#e6204c', fontSize: '.95rem', marginTop: -10, marginBottom: 9 }}>{errors.username}</div>
-        )}
-
-        <label htmlFor="password" style={{ fontWeight: 500 }}>Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          value={form.password}
-          onChange={handleChange}
-          disabled={submitting}
-          style={{
-            padding: '10px 12px',
-            border: '1px solid var(--border-color)',
-            borderRadius: 4,
-            fontSize: '1rem',
-            background: '#18213c',
-            color: 'var(--text-color)',
-            outline: errors.password ? '2px solid #e6204c' : 'none',
-          }}
-        />
-        {errors.password && (
-          <div style={{ color: '#e6204c', fontSize: '.95rem', marginTop: -10, marginBottom: 9 }}>{errors.password}</div>
-        )}
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <label htmlFor="username" style={{ fontWeight: 600, fontSize: "1.04rem", letterSpacing: "0.01em" }}>Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autoComplete="username"
+            value={form.username}
+            onChange={handleChange}
+            disabled={submitting}
+            style={{
+              padding: "13px 15px",
+              border: `2px solid ${errors.username ? "#e6204c" : "var(--input-border)"}`,
+              borderRadius: 6,
+              fontSize: "1.07rem",
+              fontWeight: 500,
+              background: "var(--input-bg)",
+              color: "var(--text-color)",
+              outline: errors.username ? "2px solid #e6204c" : "none",
+              boxShadow: errors.username ? "0 0 0 2px #e6204c55" : "var(--focus-ring)",
+              transition: "border 0.18s, box-shadow 0.18s",
+              marginBottom: 2,
+            }}
+            placeholder="Enter your username"
+          />
+          {errors.username && (
+            <div style={{ color: "#e6204c", fontSize: ".98rem", marginTop: 2, marginBottom: 3 }}>{errors.username}</div>
+          )}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <label htmlFor="password" style={{ fontWeight: 600, fontSize: "1.04rem", letterSpacing: "0.01em" }}>Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            value={form.password}
+            onChange={handleChange}
+            disabled={submitting}
+            style={{
+              padding: "13px 15px",
+              border: `2px solid ${errors.password ? "#e6204c" : "var(--input-border)"}`,
+              borderRadius: 6,
+              fontSize: "1.07rem",
+              fontWeight: 500,
+              background: "var(--input-bg)",
+              color: "var(--text-color)",
+              outline: errors.password ? "2px solid #e6204c" : "none",
+              boxShadow: errors.password ? "0 0 0 2px #e6204c55" : "var(--focus-ring)",
+              transition: "border 0.18s, box-shadow 0.18s",
+              marginBottom: 2,
+            }}
+            placeholder="Enter your password"
+          />
+          {errors.password && (
+            <div style={{ color: "#e6204c", fontSize: ".98rem", marginTop: 2, marginBottom: 3 }}>{errors.password}</div>
+          )}
+        </div>
 
         <button
           type="submit"
           className="btn btn-large"
           style={{
-            marginTop: 12,
-            fontWeight: 600,
-            fontSize: '1.11rem',
-            borderRadius: 5,
-            background: 'var(--base-light)',
-            color: 'white',
-            opacity: submitting ? 0.65 : 1,
-            cursor: submitting ? 'default' : 'pointer',
+            marginTop: 7,
+            fontWeight: 700,
+            fontSize: "1.13rem",
+            borderRadius: 7,
+            background: "var(--secondary-color)",
+            color: "white",
+            letterSpacing: 0.03,
+            boxShadow: "var(--btn-hover-shadow)",
+            transition: "background 0.18s, color 0.14s, box-shadow 0.18s",
+            opacity: submitting ? 0.62 : 1,
+            cursor: submitting ? "not-allowed" : "pointer",
           }}
           disabled={submitting}
         >
-          {submitting ? 'Signing in...' : 'Login'}
+          {submitting ? "Signing in..." : "Login"}
         </button>
         {submitError && (
-          <div style={{ color: '#e6204c', marginTop: 12, textAlign: 'center', fontWeight: 500 }}>{submitError}</div>
+          <div style={{ color: "#e6204c", marginTop: 10, marginBottom: 2, textAlign: "center", fontWeight: 600, fontSize: "1.03rem" }}>{submitError}</div>
         )}
-        <div style={{ color: 'var(--text-secondary)', fontSize: '.96rem', textAlign: 'center', marginTop: 8 }}>
-          Don&apos;t have an account?{" "}
-          <a href="/register" style={{ color: 'var(--base-light)', textDecoration: 'underline' }}>
+        <div style={{ color: "var(--text-secondary)", fontSize: ".98rem", textAlign: "center", marginTop: 6 }}>
+          Don't have an account?{" "}
+          <a href="/register" style={{ color: "var(--accent-color)", textDecoration: "underline", fontWeight: 600 }}>
             Register
           </a>
         </div>
-        <div style={{ fontSize: '.86rem', color: 'var(--text-secondary)', textAlign: 'center', marginTop: 5 }}>
-          {/* Now uses REST API layer for login */}
+        <div style={{ fontSize: ".9rem", color: "var(--text-secondary)", textAlign: "center", marginTop: 4 }}>
+          {/* Login is powered by the REST API layer */}
         </div>
       </form>
     </div>
