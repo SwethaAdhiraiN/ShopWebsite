@@ -95,10 +95,15 @@ function OrderManagement() {
       </div>
       <div
         style={{
-          padding: 22,
-          border: "1px solid var(--border-color)",
-          borderRadius: 8,
-          background: "var(--primary-color)",
+          padding: "36px 28px",
+          border: "2px solid var(--border-color)",
+          borderRadius: 16,
+          background: "var(--surface-color)",
+          boxShadow: "0 7px 36px 0 #8b5cf641, 0 2px 14px 0 #d4af3733",
+          marginBottom: 32,
+          maxWidth: 900,
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         <div style={{ marginBottom: 10, fontWeight: 500 }}>Order Actions</div>
@@ -114,9 +119,14 @@ function OrderManagement() {
         ) : orders.length === 0 ? (
           <div style={{ color: "#bbb" }}>No orders found (or not implemented in mock API).</div>
         ) : (
-          <table style={{ width: "100%", background: "none", color: "white", borderCollapse: "collapse" }}>
+          <table style={{
+              width: "100%",
+              background: "none",
+              color: "var(--primary-color)",
+              borderCollapse: "collapse"
+            }}>
             <thead>
-              <tr style={{ background: "rgba(0,255,255,0.04)" }}>
+              <tr style={{ background: "var(--card-bg-muted)" }}>
                 <th style={{ textAlign: "left", padding: 6 }}>Order ID</th>
                 <th style={{ padding: 6, textAlign: "right" }}>Subtotal</th>
                 <th style={{ padding: 6 }}>Status</th>
@@ -126,7 +136,7 @@ function OrderManagement() {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order.id} style={{ borderBottom: "1px solid var(--border-color)" }}>
+                <tr key={order.id} style={{ borderBottom: "1px solid var(--border-color)", background: "var(--card-bg-bright)" }}>
                   <td style={{ padding: 6 }}>{order.id}</td>
                   <td style={{ padding: 6, textAlign: "right" }}>${order.subtotal?.toFixed(2) ?? "n/a"}</td>
                   <td style={{ padding: 6 }}>

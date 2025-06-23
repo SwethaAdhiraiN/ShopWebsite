@@ -138,12 +138,15 @@ function ProductManagement() {
       </div>
       <div
         style={{
-          padding: 22,
+          padding: "36px 28px",
           border: "2px solid var(--border-color)",
           borderRadius: 16,
           background: "var(--surface-color)",
+          boxShadow: "0 7px 36px 0 #8b5cf642, 0 2px 14px 0 #d4af3741",
           marginBottom: 28,
-          boxShadow: "0 4px 22px 0 #8b5cf62b, 0 1.5px 10px #d4af3741",
+          maxWidth: 600,
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         <div style={{ marginBottom: 10, fontWeight: 500 }}>Add New Product</div>
@@ -155,7 +158,14 @@ function ProductManagement() {
             placeholder="Name"
             value={newForm.name}
             onChange={handleNewFormChange}
-            style={{ padding: "7px 11px", borderRadius: 4, fontSize: "1rem", border: "1px solid var(--border-color)", width: 155 }}
+            style={{
+              padding: "11px 14px",
+              borderRadius: 7,
+              fontSize: "1.06rem",
+              border: "2px solid var(--border-color)",
+              background: "#f5f5f5",
+              width: 155
+            }}
           />
           <input
             name="price"
@@ -166,7 +176,14 @@ function ProductManagement() {
             step="0.01"
             value={newForm.price}
             onChange={handleNewFormChange}
-            style={{ padding: "7px 11px", borderRadius: 4, fontSize: "1rem", border: "1px solid var(--border-color)", width: 95 }}
+            style={{
+              padding: "11px 14px",
+              borderRadius: 7,
+              fontSize: "1.06rem",
+              border: "2px solid var(--border-color)",
+              background: "#f5f5f5",
+              width: 95
+            }}
           />
           <input
             name="description"
@@ -174,7 +191,15 @@ function ProductManagement() {
             placeholder="Description"
             value={newForm.description}
             onChange={handleNewFormChange}
-            style={{ padding: "7px 11px", borderRadius: 4, fontSize: "1rem", border: "1px solid var(--border-color)", width: 250, flex: 1 }}
+            style={{
+              padding: "11px 14px",
+              borderRadius: 7,
+              fontSize: "1.06rem",
+              border: "2px solid var(--border-color)",
+              background: "#f5f5f5",
+              width: 250,
+              flex: 1
+            }}
           />
           <button className="btn" type="submit" style={{ minWidth: 112, fontWeight: 600 }}>
             Add
@@ -188,11 +213,11 @@ function ProductManagement() {
       </div>
       <div
         style={{
-          padding: 22,
+          padding: "36px 28px",
           border: "2px solid var(--border-color)",
           borderRadius: 16,
           background: "var(--surface-color)",
-          boxShadow: "0 4px 22px 0 #8b5cf62b, 0 1.5px 10px #d4af3741",
+          boxShadow: "0 7px 36px 0 #8b5cf642, 0 2px 14px 0 #d4af3741"
         }}
       >
         <div style={{ marginBottom: 11, fontWeight: 500 }}>Current Products</div>
@@ -201,9 +226,14 @@ function ProductManagement() {
         ) : products.length === 0 ? (
           <div style={{ color: "#bbb" }}>No products found.</div>
         ) : (
-          <table style={{ width: "100%", background: "none", color: "white", borderCollapse: "collapse" }}>
+          <table style={{
+              width: "100%",
+              background: "none",
+              color: "var(--primary-color)",
+              borderCollapse: "collapse"
+            }}>
             <thead>
-              <tr style={{ background: "rgba(0,255,255,0.04)" }}>
+              <tr style={{ background: "var(--card-bg-muted)" }}>
                 <th style={{ textAlign: "left", padding: 6 }}>Name</th>
                 <th style={{ textAlign: "right" }}>Price</th>
                 <th style={{ padding: 6 }}>Description</th>
@@ -213,7 +243,7 @@ function ProductManagement() {
             <tbody>
               {products.map((p) =>
                 editingId === p.id ? (
-                  <tr key={p.id} style={{ background: "#21eafa11", borderRadius: 4 }}>
+                  <tr key={p.id} style={{ background: "var(--card-bg-muted)", borderRadius: 6 }}>
                     <td style={{ padding: 6 }}>
                       <input
                         name="name"
@@ -221,7 +251,14 @@ function ProductManagement() {
                         value={editForm.name}
                         onChange={handleEditFormChange}
                         required
-                        style={{ width: 110, padding: "5px 7px", borderRadius: 4, border: "1px solid var(--border-color)" }}
+                        style={{
+                          width: 110,
+                          padding: "10px",
+                          borderRadius: 7,
+                          border: "2px solid var(--border-color)",
+                          background: "#f5f5f5",
+                          fontSize: "1.06rem"
+                        }}
                       />
                     </td>
                     <td style={{ padding: 6, textAlign: "right" }}>
@@ -233,7 +270,15 @@ function ProductManagement() {
                         value={editForm.price}
                         onChange={handleEditFormChange}
                         required
-                        style={{ width: 70, padding: "5px 7px", borderRadius: 4, border: "1px solid var(--border-color)", textAlign: "right" }}
+                        style={{
+                          width: 70,
+                          padding: "10px",
+                          borderRadius: 7,
+                          border: "2px solid var(--border-color)",
+                          background: "#f5f5f5",
+                          textAlign: "right",
+                          fontSize: "1.06rem"
+                        }}
                       />
                     </td>
                     <td style={{ padding: 6 }}>
@@ -242,7 +287,14 @@ function ProductManagement() {
                         type="text"
                         value={editForm.description}
                         onChange={handleEditFormChange}
-                        style={{ width: 180, padding: "5px 7px", borderRadius: 4, border: "1px solid var(--border-color)" }}
+                        style={{
+                          width: 180,
+                          padding: "10px",
+                          borderRadius: 7,
+                          border: "2px solid var(--border-color)",
+                          background: "#f5f5f5",
+                          fontSize: "1.06rem"
+                        }}
                       />
                     </td>
                     <td style={{ padding: 6 }}>
@@ -255,7 +307,7 @@ function ProductManagement() {
                     </td>
                   </tr>
                 ) : (
-                  <tr key={p.id} style={{ borderBottom: "1px solid var(--border-color)" }}>
+                  <tr key={p.id} style={{ borderBottom: "1px solid var(--border-color)", background: "var(--card-bg-bright)" }}>
                     <td style={{ padding: 6 }}>{p.name}</td>
                     <td style={{ padding: 6, textAlign: "right" }}>${Number(p.price).toFixed(2)}</td>
                     <td style={{ padding: 6 }}>{p.description}</td>
