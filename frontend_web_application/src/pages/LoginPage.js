@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { login as apiLogin } from '../api/api';
 
 // PUBLIC_INTERFACE
 function LoginPage() {
   /**
    * Controlled login form with validations and error display.
-   * Uses AuthContext.login() stub; REST API call logic goes there.
-   * Styled to match modern design (brand color button, input, spacing).
+   * Uses API login function; integrates with AuthContext.
    */
-  const { login } = useAuth();
+  const { login: authLogin } = useAuth();
 
   // Controlled fields
   const [form, setForm] = useState({ username: '', password: '' });
@@ -47,10 +47,16 @@ function LoginPage() {
     setErrors({});
     setSubmitError('');
 
-    // Call AuthContext.login stub (simulate API)
-    const ok = await login(form.username, form.password);
-    if (!ok) {
-      setSubmitError('Invalid username or password (stub; real API coming soon)');
+    // Call real API logic, then set context
+    const result = await apiLogin(form.username, form.password);
+    if (result.success) {
+      // Update AuthContext, if available
+      if (typeof authLogin === 'function') {
+        await authLogin(form.username, form.password); // This is for compatibility; real login state handled outside here
+      }
+      // You can redirect after login here
+    } else {
+      setSubmitError(result.error || 'Invalid username or password');
     }
     setSubmitting(false);
   };
@@ -151,7 +157,7 @@ function LoginPage() {
           </a>
         </div>
         <div style={{ fontSize: '.86rem', color: 'var(--text-secondary)', textAlign: 'center', marginTop: 5 }}>
-          {/* REST API connection will be integrated here */}
+          {/* Now uses REST API layer for login */}
         </div>
       </form>
     </div>

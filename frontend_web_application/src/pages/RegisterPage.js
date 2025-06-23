@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { register as apiRegister } from '../api/api';
 
 // PUBLIC_INTERFACE
 function RegisterPage() {
   /**
    * Controlled registration form with validations and error display.
-   * (Stub) Hooks to backend/REST API will be integrated soon.
-   * Styled to match modern design: rounded form, blue highlight.
+   * Uses API register function and handles response.
    */
-  const { login } = useAuth(); // May allow immediate login after register in the future
+  const { login } = useAuth(); // Placeholder for future: auto-login after registration
 
   // Controlled fields
   const [form, setForm] = useState({ username: '', password: '', password2: '' });
@@ -51,18 +51,19 @@ function RegisterPage() {
     setSubmitting(true);
     setErrors({});
     setSubmitError('');
-    // Simulate registration API call - stub logic only
     try {
-      // TODO: Replace with real API call
-      // Example: await registerAPI(form.username, form.password);
-      setTimeout(() => {
-        setSubmitSuccess('Registered successfully! (stubbed; real API integration pending)');
+      const result = await apiRegister(form.username, form.password);
+      if (result.success) {
+        setSubmitSuccess('Registered successfully! You can now login.');
         setSubmitting(false);
         setForm({ username: '', password: '', password2: '' });
-      }, 600);
+        // Optionally: await login(form.username, form.password); // auto-login
+      } else {
+        setSubmitError(result.error || 'Registration failed');
+        setSubmitting(false);
+      }
     } catch (err) {
-      // Handle API error
-      setSubmitError('Registration failed (stub; real API soon)');
+      setSubmitError('Registration failed (unexpected error)');
       setSubmitting(false);
     }
   };
@@ -190,7 +191,7 @@ function RegisterPage() {
           </a>
         </div>
         <div style={{ fontSize: '.86rem', color: 'var(--text-secondary)', textAlign: 'center', marginTop: 5 }}>
-          {/* REST API connection will be integrated here */}
+          {/* Now uses REST API layer for registration */}
         </div>
       </form>
     </div>
