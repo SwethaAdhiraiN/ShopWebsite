@@ -47,24 +47,29 @@ function HomePage() {
         <div style={{ fontWeight: 600, fontSize: '1.4rem', marginBottom: 17, color: 'var(--base-light)' }}>
           Featured Products
         </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 28,
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-        }}>
+        <div
+          className="featuredCards"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 28,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            width: '100%'
+          }}>
           {featured.map((prod) => (
             <div
               key={prod.id}
+              className="card"
               style={{
                 background: "var(--surface-color)",
                 borderRadius: 14,
                 boxShadow: "0 8px 34px 0 #8b5cf641, 0 2px 14px 0 #d4af3733",
                 border: "2px solid var(--border-color)",
-                padding: 23,
-                minWidth: 190,
-                maxWidth: 190,
+                padding: "1.44rem",
+                minWidth: 180,
+                maxWidth: 220,
+                width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center"

@@ -14,18 +14,23 @@ function Navbar() {
     navigate('/login');
   };
 
+  // Responsive navbar: stack menu items on mobile, hamburger not implemented yet (for simplicity)
   return (
     <nav className="navbar" style={{
       background: "var(--surface-color)",
       color: "var(--primary-color)",
       borderBottom: "1px solid var(--border-color)",
       minHeight: 65,
-      boxShadow: "0 2px 8px #d4af3722"
+      boxShadow: "0 2px 8px #d4af3722",
+      width: "100vw"
     }}>
-      <div className="container">
+      <div className="container" style={{
+        paddingLeft: "0.2rem", paddingRight: "0.2rem"
+      }}>
         <div
           style={{
             display: 'flex',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
             width: '100%',
             alignItems: 'center'
@@ -49,8 +54,13 @@ function Navbar() {
             }}>&#9702;</span>{" "}
             ShopWebsite
           </div>
-          <div style={{ display: 'flex', gap: 17, alignItems: 'center' }}>
-            <Link className="btn" to="/" tabIndex={0}>
+          <div className="navbar-links" style={{
+            display: 'flex', gap: 17, alignItems: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <Link className="btn" to="/" tabIndex={0} style={{
+              fontWeight: 600
+            }}>
               Home
             </Link>
             {isLoggedIn && (
@@ -83,6 +93,28 @@ function Navbar() {
           </div>
         </div>
       </div>
+      {/* Simple CSS for navbar mobile stack */}
+      <style>{`
+        @media (max-width: 600px) {
+          .navbar-links {
+            flex-direction: column !important;
+            gap: 7px !important;
+            width: 100vw;
+            padding-top: 0.23rem;
+          }
+          .navbar .btn {
+            width: 98vw !important;
+            min-width: unset !important;
+            margin-left: 0 !important;
+            justify-content: flex-start;
+            font-size: 0.99rem !important;
+          }
+          .logo {
+            font-size: 1.08rem !important;
+            gap: 5px !important;
+          }
+        }
+      `}</style>
     </nav>
   );
 }

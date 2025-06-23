@@ -29,26 +29,29 @@ function ProductListPage() {
         <div style={{ color: "var(--text-secondary)", marginBottom: 24 }}>Loading products...</div>
       ) : (
         <div
+          className="productGrid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 28,
+            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+            gap: "1.7rem"
           }}
           data-testid="product-list"
         >
           {products.map((prod) => (
             <div
               key={prod.id}
+              className="card"
               style={{
                 background: "var(--surface-color)",
                 borderRadius: 14,
                 boxShadow: "0 8px 34px 0 #8b5cf641, 0 2px 14px 0 #d4af3729",
                 border: "2px solid var(--border-color)",
-                padding: 26,
+                padding: "1.45rem",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                minHeight: 220,
+                minHeight: 210,
+                width: "100%",
                 position: "relative"
               }}
               data-testid={`card-product-${prod.id}`}
