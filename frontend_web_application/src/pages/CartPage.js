@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { createOrder } from '../api/api';
 
 /**
  * Shopping cart page: displays cart items, allows editing (update quantity, remove),
@@ -25,52 +26,58 @@ function CartPage() {
 
   // Handler for changing item quantity in cart
   // PUBLIC_INTERFACE
-  const handleQuantityChange = (item, newQuantity) => {
+  const handleQuantityChange = async (item, newQuantity) => {
     const qty = parseInt(newQuantity, 10);
     if (isNaN(qty) || qty < 1) return;
-    updateItem(item.id, { ...item, quantity: qty });
+    // API/Context-backed: updateItem is async
+    await updateItem(item.id, { ...item, quantity: qty });
   };
 
   // Handler for removing an item from cart
   // PUBLIC_INTERFACE
-  const handleRemove = (itemId) => {
-    removeItem(itemId);
+  const handleRemove = async (itemId) => {
+    await removeItem(itemId);
   };
 
-  // Handler for placing order (stub, simulates network)
+  // Handler for placing order through createOrder API (mock persistence)
   // PUBLIC_INTERFACE
   const handleCheckout = async (e) => {
     e.preventDefault();
     setOrderError('');
     setPlacingOrder(true);
 
-    // Stub: Simulate async API call for order placement
     try {
-      // await submitOrder(cartItems); // REST API call (to implement)
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      // Fake order number
-      const fakeOrderId = Math.floor(Math.random() * 100000) + 1000;
-      // For now, just transition to order confirmation, passing order details in navigation state
-      clearCart();
-      navigate('/order-confirmation', {
-        state: {
-          orderId: fakeOrderId,
-          items: cartItems,
-          subtotal,
-        },
-      });
+      // Submit the "order"
+      // Order payload contains userId (null for demo), items, subtotal, etc.
+      const orderPayload = {
+        items: cartItems,
+        subtotal,
+        userId: null // TODO: pass current user (if using AuthContext)
+      };
+      const resp = await createOrder(orderPayload);
+      if (resp.success && resp.order) {
+        clearCart();
+        navigate('/order-confirmation', {
+          state: {
+            orderId: resp.order.id,
+            items: resp.order.items,
+            subtotal: resp.order.subtotal,
+          },
+        });
+      } else {
+        setOrderError('Order placement failed. Please try again soon.');
+      }
     } catch (e) {
       setOrderError('Order placement failed. Please try again soon.');
     }
     setPlacingOrder(false);
   };
 
-  // (Future) Stub for actual REST API order submission
+  // (No longer used; real submit routed via API)
   // PUBLIC_INTERFACE
   // eslint-disable-next-line
   async function submitOrder(orderData) {
-    // TODO: Integrate with backend REST API for order submission
-    // Example: return await fetch('/api/orders', { method: 'POST', ... })
+    // DEPRECATED: calls are now via createOrder API
     return { orderId: 'PLACEHOLDER' };
   }
 
