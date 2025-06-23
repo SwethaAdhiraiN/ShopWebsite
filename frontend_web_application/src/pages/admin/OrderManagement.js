@@ -98,7 +98,7 @@ function OrderManagement() {
           padding: 22,
           border: "1px solid var(--border-color)",
           borderRadius: 8,
-          background: "#232e46",
+          background: "var(--primary-color)",
         }}
       >
         <div style={{ marginBottom: 10, fontWeight: 500 }}>Order Actions</div>
