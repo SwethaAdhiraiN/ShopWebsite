@@ -58,28 +58,29 @@ function HomePage() {
             <div
               key={prod.id}
               style={{
-                background: 'rgba(20,24,38,0.92)',
-                borderRadius: 10,
-                boxShadow: '0 2px 14px rgba(0,255,255,.08)',
-                padding: 22,
+                background: "var(--surface-color)",
+                borderRadius: 14,
+                boxShadow: "0 8px 34px 0 #8b5cf641, 0 2px 14px 0 #d4af3733",
+                border: "2px solid var(--border-color)",
+                padding: 23,
                 minWidth: 190,
                 maxWidth: 190,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
               }}
             >
               <div style={{
-                width: '100%',
+                width: "100%",
                 height: 56,
-                background: '#001a3c12',
-                borderRadius: 5,
-                marginBottom: 12,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                background: "var(--card-bg-muted)",
+                borderRadius: 7,
+                marginBottom: 13,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}>
-                <span style={{ fontSize: 28, color: 'var(--base-light)' }}>🛒</span>
+                <span style={{ fontSize: 28, color: "var(--base-light)" }}>🛒</span>
               </div>
               <div style={{ fontWeight: 500, marginBottom: 6 }}>{prod.name}</div>
               <div style={{ color: 'var(--base-light)', fontWeight: 500, fontSize: '1rem', marginBottom: 6 }}>${prod.price.toFixed(2)}</div>

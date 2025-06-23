@@ -27,17 +27,17 @@ function ProductDetailPage() {
         <div style={{ minWidth: 230, flex: 1 }}>
           <div
             style={{
-              width: '100%',
+              width: "100%",
               height: 180,
-              background: '#001a3c1e',
-              borderRadius: 8,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 20,
+              background: "var(--card-bg-muted)",
+              borderRadius: 12,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: 20
             }}
           >
-            <span style={{ fontSize: 58, color: 'var(--base-light)' }}>🛍️</span>
+            <span style={{ fontSize: 58, color: "var(--base-light)" }}>🛍️</span>
           </div>
         </div>
         <div style={{ flex: 2, minWidth: 240 }}>

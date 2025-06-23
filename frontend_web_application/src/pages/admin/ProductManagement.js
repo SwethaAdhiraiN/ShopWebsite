@@ -139,10 +139,11 @@ function ProductManagement() {
       <div
         style={{
           padding: 22,
-          border: "1px solid var(--border-color)",
-          borderRadius: 8,
-          background: "#232e46",
+          border: "2px solid var(--border-color)",
+          borderRadius: 16,
+          background: "var(--surface-color)",
           marginBottom: 28,
+          boxShadow: "0 4px 22px 0 #8b5cf62b, 0 1.5px 10px #d4af3741",
         }}
       >
         <div style={{ marginBottom: 10, fontWeight: 500 }}>Add New Product</div>
@@ -188,9 +189,10 @@ function ProductManagement() {
       <div
         style={{
           padding: 22,
-          border: "1px solid var(--border-color)",
-          borderRadius: 8,
-          background: "#232e46",
+          border: "2px solid var(--border-color)",
+          borderRadius: 16,
+          background: "var(--surface-color)",
+          boxShadow: "0 4px 22px 0 #8b5cf62b, 0 1.5px 10px #d4af3741",
         }}
       >
         <div style={{ marginBottom: 11, fontWeight: 500 }}>Current Products</div>

@@ -14,10 +14,18 @@
   --danger: #C0392B;
   --highlight-bg: #f8f4ec;
   --card-bg: #fff;
+  --card-bg-bright: #fff;
+  --card-bg-muted: #f7f6f3;
+  --holder-bg: #fff;
+  --holder-shadow: 0 7px 36px 0 #8b5cf642, 0 2px 14px 0 #d4af3741;
+  --holder-border: 2px solid var(--border-color);
   --input-bg: #f0f1f4;
   --input-border: #ded6bc;
   --btn-hover-shadow: 0 2px 12px #d4af3722;
+  --blue-muted: #e9f1ff;
+  --base-light: #8B5CF6;
 }
+/* Remove any reference to dark blue in the palette; all cards/holders use --card-bg, --surface-color, or --card-bg-bright */
 
 body {
   margin: 0;

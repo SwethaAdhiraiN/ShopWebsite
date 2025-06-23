@@ -40,32 +40,33 @@ function ProductListPage() {
             <div
               key={prod.id}
               style={{
-                background: 'rgba(20,24,38,0.92)',
-                borderRadius: 10,
-                boxShadow: '0 2px 14px rgba(0,255,255,.06)',
-                padding: 24,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                background: "var(--surface-color)",
+                borderRadius: 14,
+                boxShadow: "0 8px 34px 0 #8b5cf641, 0 2px 14px 0 #d4af3729",
+                border: "2px solid var(--border-color)",
+                padding: 26,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
                 minHeight: 220,
-                position: 'relative',
+                position: "relative"
               }}
               data-testid={`card-product-${prod.id}`}
             >
               <div
                 style={{
-                  width: '100%',
+                  width: "100%",
                   marginBottom: 18,
                   height: 80,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  background: '#001a3c1e',
-                  borderRadius: 6,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  background: "var(--card-bg-muted)",
+                  borderRadius: 7,
                 }}
               >
                 {/* Will show product image when integrated */}
-                <span style={{ fontSize: 39, color: 'var(--base-light)' }}>🛍️</span>
+                <span style={{ fontSize: 39, color: "var(--base-light)" }}>🛍️</span>
               </div>
               <Link to={`/products/${prod.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div style={{ fontWeight: 600, fontSize: '1.2rem', marginBottom: 6 }}>

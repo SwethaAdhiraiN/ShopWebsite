@@ -106,13 +106,15 @@ function CartPage() {
               <li
                 key={item.id || idx}
                 style={{
-                  background: '#1a223c',
-                  borderRadius: 6,
-                  padding: '16px 14px',
-                  marginBottom: 14,
-                  display: 'flex',
-                  alignItems: 'center',
+                  background: "var(--surface-color)",
+                  borderRadius: 13,
+                  padding: "21px 19px",
+                  marginBottom: 18,
+                  display: "flex",
+                  alignItems: "center",
                   gap: 8,
+                  boxShadow: "0 8px 34px 0 #8b5cf629,0 2px 14px 0 #d4af3720",
+                  border: "2px solid var(--border-color)"
                 }}
               >
                 <span style={{ fontSize: 26, marginRight: 14, color: 'var(--base-light)' }}>🛒</span>
@@ -128,12 +130,14 @@ function CartPage() {
                       onChange={(e) => handleQuantityChange(item, e.target.value)}
                       style={{
                         width: 53,
-                        padding: '3px 7px',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: 4,
-                        background: '#162040',
-                        color: 'var(--text-color)',
-                        fontSize: '.98rem'
+                        padding: "7px 11px",
+                        border: "1.8px solid var(--input-border)",
+                        borderRadius: 6,
+                        background: "#F5F5F5",
+                        color: "var(--text-color)",
+                        fontSize: ".98rem",
+                        fontWeight: 500,
+                        boxShadow: "0 0 0 1.5px #8b5cf612"
                       }}
                     />
                   </div>

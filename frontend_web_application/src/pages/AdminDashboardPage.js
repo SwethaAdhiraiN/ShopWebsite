@@ -49,7 +49,7 @@ function AdminDashboardPage() {
           gap: 14,
           marginBottom: 33,
           borderBottom: "1px solid var(--border-color)",
-          background: "rgba(0,255,255,0.021)",
+          background: "transparent",
           paddingBottom: 2,
         }}
       >
@@ -58,17 +58,17 @@ function AdminDashboardPage() {
             key={tab.key}
             className="btn"
             style={{
-              background: section === tab.key ? "var(--base-light)" : "rgba(10,20,40,0.17)",
-              color: section === tab.key ? "white" : "var(--text-secondary)",
+              background: section === tab.key ? "var(--surface-color)" : "var(--card-bg-muted)",
+              color: section === tab.key ? "var(--primary-color)" : "var(--text-secondary)",
               fontWeight: section === tab.key ? 700 : 500,
-              borderRadius: 5,
-              fontSize: "1.02rem",
+              borderRadius: 7,
+              fontSize: "1.04rem",
               marginRight: 7,
-              borderBottom: section === tab.key ? "2.5px solid #fff" : "none",
-              boxShadow: section === tab.key ? "0 1px 6px #00ffff22" : "none",
+              borderBottom: section === tab.key ? "3px solid var(--base-light)" : "none",
+              boxShadow: section === tab.key ? "0 2px 8px #8b5cf646" : "none",
               outline: "none",
               cursor: "pointer",
-              padding: "8px 17px 10px 13px",
+              padding: "10px 20px 10px 15px",
             }}
             onClick={() => setSection(tab.key)}
             aria-current={section === tab.key ? "page" : undefined}
