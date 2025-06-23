@@ -12,19 +12,25 @@ import OrderConfirmationPage from './pages/OrderConfirmationPage';
 
 import { PrivateRoute, PublicOnlyRoute } from './ProtectedRoutes';
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * Route config: 
+ * - Only guests can access /login and /register (redirect logged-in to /products)
+ * - Only authenticated users can access shop, cart, orders, admin, or order-confirmation
+ * - Home "/" is public but instantly redirects to /products if logged in (by component logic)
+ */
 const appRoutes = [
-  // Home is public, but will redirect to /products if logged in (handled in component)
+  // HOME is public (component does redirect), root entry for all
   { path: '/', element: <HomePage /> },
 
-  // LOGIN & REGISTER: Only shown if NOT logged in
+  // AUTH: Only public for NOT logged-in; redirect logged-in to store
   {
     path: '/login',
     element: (
       <PublicOnlyRoute>
         <LoginPage />
       </PublicOnlyRoute>
-    )
+    ),
   },
   {
     path: '/register',
@@ -32,17 +38,17 @@ const appRoutes = [
       <PublicOnlyRoute>
         <RegisterPage />
       </PublicOnlyRoute>
-    )
+    ),
   },
 
-  // PRODUCT LISTING (store), PRODUCT DETAIL, CART, ORDERS: Only for authenticated
+  // PROTECTED ROUTES: shop pages only for authenticated users
   {
     path: '/products',
     element: (
       <PrivateRoute>
         <ProductListPage />
       </PrivateRoute>
-    )
+    ),
   },
   {
     path: '/products/:productId',
@@ -50,7 +56,7 @@ const appRoutes = [
       <PrivateRoute>
         <ProductDetailPage />
       </PrivateRoute>
-    )
+    ),
   },
   {
     path: '/cart',
@@ -58,7 +64,7 @@ const appRoutes = [
       <PrivateRoute>
         <CartPage />
       </PrivateRoute>
-    )
+    ),
   },
   {
     path: '/order-confirmation',
@@ -66,7 +72,7 @@ const appRoutes = [
       <PrivateRoute>
         <OrderConfirmationPage />
       </PrivateRoute>
-    )
+    ),
   },
   {
     path: '/orders',
@@ -74,16 +80,18 @@ const appRoutes = [
       <PrivateRoute>
         <OrdersPage />
       </PrivateRoute>
-    )
+    ),
   },
+  // ADMIN DASHBOARD: only authenticated (admin subpages handled inside dashboard)
   {
     path: '/admin',
     element: (
       <PrivateRoute>
         <AdminDashboardPage />
       </PrivateRoute>
-    )
+    ),
   },
+  // Fallback: could add 404/NotFound
 ];
 
 export default appRoutes;
