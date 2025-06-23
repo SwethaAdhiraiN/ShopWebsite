@@ -1,0 +1,5 @@
+{
+  "task_description": "{'component_name': 'Frontend Web Application', 'description': 'Provides the user interface for both customers and admins. Handles all user interactions, including registration, login, product browsing, cart management, order placement, and admin dashboards. Communicates exclusively with the backend via RESTful API calls. Built with React and served as a static web application within its own Docker container. No direct access to persistent data or external systems.', 'interfaces': [], 'framework': '', 'platform': '', 'container': '{\n  "name": "OnlineShoppingWebsite  Container"\n}'}",
+  "tasks": {},
+  "next_task_id": 1
+}
