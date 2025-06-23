@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { register as apiRegister } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 // PUBLIC_INTERFACE
 function RegisterPage() {
   /**
    * Controlled registration form with validations and error display.
-   * Uses API register function and handles response.
+   * Uses AuthContext tryRegister and redirects to products on success.
    */
-  const { login } = useAuth(); // Placeholder for future: auto-login after registration
+  const { tryRegister } = useAuth();
+
+  const navigate = useNavigate();
 
   // Controlled fields
   const [form, setForm] = useState({ username: '', password: '', password2: '' });
@@ -52,14 +54,15 @@ function RegisterPage() {
     setErrors({});
     setSubmitError('');
     try {
-      const result = await apiRegister(form.username, form.password);
-      if (result.success) {
-        setSubmitSuccess('Registered successfully! You can now login.');
-        setSubmitting(false);
-        setForm({ username: '', password: '', password2: '' });
-        // Optionally: await login(form.username, form.password); // auto-login
+      const result = await tryRegister(form.username, form.password);
+      if (result && result.success) {
+        // Registration succeeded, immediately redirect to product browsing
+        setSubmitSuccess('Registration successful! Redirecting...');
+        setTimeout(() => {
+          navigate("/products", { replace: true });
+        }, 500); // short delay for feedback
       } else {
-        setSubmitError(result.error || 'Registration failed');
+        setSubmitError(result?.error || 'Registration failed');
         setSubmitting(false);
       }
     } catch (err) {

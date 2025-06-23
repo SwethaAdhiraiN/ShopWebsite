@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 // Demo featured products (stub: can also import from demo data)
 const featured = [
@@ -12,8 +13,18 @@ const featured = [
 function HomePage() {
   /**
    * Home page with modern hero/banner, promo, and featured products.
-   * UI ready for API/product highlight integration.
+   * If authenticated, immediately redirects to product browsing for seamless experience.
    */
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // Seamless redirect to store for already-logged-in users
+      navigate("/products", { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className="container">
       <div className="hero" style={{ marginTop: 30 }}>

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { login as apiLogin } from '../api/api';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // PUBLIC_INTERFACE
 function LoginPage() {
   /**
    * Controlled login form with validations and error display.
-   * Uses API login function; integrates with AuthContext.
+   * Calls AuthContext login and redirects to products when authorized.
    */
   const { login: authLogin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Controlled fields
   const [form, setForm] = useState({ username: '', password: '' });
@@ -46,17 +48,16 @@ function LoginPage() {
     setSubmitting(true);
     setErrors({});
     setSubmitError('');
-
-    // Call real API logic, then set context
-    const result = await apiLogin(form.username, form.password);
-    if (result.success) {
-      // Update AuthContext, if available
-      if (typeof authLogin === 'function') {
-        await authLogin(form.username, form.password); // This is for compatibility; real login state handled outside here
-      }
-      // You can redirect after login here
+    // New: use AuthContext login which updates global state and persist user
+    const result = await authLogin(form.username, form.password);
+    if (result && result.success) {
+      // Smooth redirect to intended page or store
+      const redirectTo = (location.state && location.state.from && location.state.from.pathname && !['/login','/register'].includes(location.state.from.pathname))
+        ? location.state.from.pathname
+        : "/products";
+      navigate(redirectTo, { replace: true });
     } else {
-      setSubmitError(result.error || 'Invalid username or password');
+      setSubmitError(result?.error || 'Invalid username or password');
     }
     setSubmitting(false);
   };
