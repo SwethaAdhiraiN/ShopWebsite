@@ -4,8 +4,12 @@ import React from "react";
 function UserManagement() {
   /**
    * Admin panel for managing users.
-   * Placeholder for CRUD/role management (future).
+   * When API is available, will fetch users and enable user CRUD.
+   * Currently displays placeholder (API not yet implemented).
    */
+  // For future: import { adminListUsers, adminCreateUser, adminUpdateUser, adminDeleteUser } from "../../api/api";
+  // When mock API supports it, implement CRUD
+
   return (
     <div>
       <h3 style={{ marginTop: 0, color: "var(--base-light)", marginBottom: 10 }}>
@@ -22,17 +26,10 @@ function UserManagement() {
           background: "#232e46",
         }}
       >
-        <div style={{ marginBottom: 9, fontWeight: 500 }}>Actions (Stubs):</div>
-        <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-          <button className="btn" disabled>
-            Add User
-          </button>
-          <button className="btn" disabled>
-            Bulk Permissions
-          </button>
-        </div>
-        <div style={{ color: "#bbb", fontSize: "1.02rem" }}>
-          User list, search, and editing tools go here.
+        {/* When API is available, CRUD table will appear here */}
+        <div style={{ color: "#bbb", fontSize: "1.07rem" }}>
+          User management API not yet implemented.<br/>
+          UI ready for integration with API when available.
         </div>
       </div>
     </div>
