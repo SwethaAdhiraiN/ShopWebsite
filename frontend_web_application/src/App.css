@@ -1,15 +1,21 @@
 :root {
-  /* Elegant gold/onyx palette */
-  --primary-color: #1C1C1C;
-  --secondary-color: #D4AF37; /* elegant gold */
-  --background-color: #F5F5F5;
-  --text-color: #222222;
-  --text-secondary: #625f54;
-  --accent-color: #8B5CF6; /* purple accent */
-  --border-color: #e4e1da;
-  --highlight-bg: #F9F4E7;
+  /* Modern e-commerce palette */
+  --primary-color: #1C1C1C;           /* Onyx (primary for headers, logo, etc) */
+  --secondary-color: #D4AF37;         /* Elegant gold (brand accent and CTAs) */
+  --background-color: #F5F5F5;        /* Subtle warm light background */
+  --surface-color: #FFFFFF;           /* For surfaces/cards */
+  --accent-color: #8B5CF6;            /* Vibrant purple accent (hover, links, badges) */
+  --text-color: #222222;              /* Core text */
+  --text-secondary: #625f54;          /* Muted secondary text */
   --btn-text: #fff;
+  --btn-bg: var(--secondary-color);
+  --border-color: #e5e0c3;
+  --focus-ring: 0 0 0 3px #8B5CF658;
   --danger: #C0392B;
+  --highlight-bg: #f8f4ec;
+  --card-bg: #fff;
+  --input-bg: #f0f1f4;
+  --input-border: #ded6bc;
   --btn-hover-shadow: 0 2px 12px #d4af3722;
 }
 
@@ -117,35 +123,30 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.18s, color 0.17s, box-shadow 0.18s;
+  transition: background 0.16s, color 0.16s, box-shadow 0.18s, border 0.17s;
   box-shadow: var(--btn-hover-shadow);
   outline: none;
   border: 1.5px solid var(--secondary-color);
   letter-spacing: 0.02em;
   user-select: none;
+  position: relative;
 }
-.btn:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  background: var(--secondary-color);
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--btn-hover-shadow), var(--focus-ring);
+  border: 1.5px solid var(--accent-color);
+  z-index: 5;
 }
 .btn:active {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-  background: var(--secondary-color);
+  background: var(--accent-color);
+  color: #fff;
 }
 .btn:hover {
   background: var(--accent-color);
   color: #fff;
   border: 1.5px solid var(--accent-color);
-  box-shadow: 0 2px 12px #8b5cf665;
-  text-decoration: none;
-}
-.btn:focus-visible {
-  background: var(--accent-color);
-  color: #fff;
-  border: 1.5px solid var(--accent-color);
-  box-shadow: 0 2px 12px #8b5cf665;
+  box-shadow: 0 2px 12px #8b5cf666;
   text-decoration: none;
 }
 
@@ -178,6 +179,35 @@ body {
 .btn-danger:focus-visible {
   background: #92291c;
   border-color: #92291c;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], textarea, select {
+  background: var(--input-bg);
+  border: 1.2px solid var(--input-border);
+  color: var(--text-color);
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 9px 11px;
+  transition: border 0.17s, box-shadow 0.16s;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border: 1.5px solid var(--accent-color);
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+input[disabled] {
+  opacity: 0.54;
+}
+label {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 3px;
 }
 
 /* Highlight and cards */
